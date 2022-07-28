@@ -115,6 +115,12 @@ const CreateUser = () => {
     }
   }
 
+  const handleEnterKeypress = (e) => {
+    if (e.key === 'Enter') {
+      handleSignUp(e);
+  }
+  }
+
 
     return (
         <div className="desktop-container">
@@ -130,7 +136,8 @@ const CreateUser = () => {
                            name="first-name" 
                            placeholder=" First Name"
                            value={firstName}
-                           onChange={(e) => setFirstName(e.target.value)}>
+                           onChange={(e) => setFirstName(e.target.value)}
+                           onKeyDown={handleEnterKeypress}>
                     </input>
 
                     <input className="create-user-field"
@@ -138,7 +145,8 @@ const CreateUser = () => {
                            name="last-name" 
                            placeholder=" Last Name"
                            value={lastName}
-                           onChange={(e) => setLastName(e.target.value)}>
+                           onChange={(e) => setLastName(e.target.value)}
+                           onKeyDown={handleEnterKeypress}>
                     </input>
 
                      <input className="create-user-field" 
@@ -146,14 +154,16 @@ const CreateUser = () => {
                            name="e-mail" 
                            placeholder=" Email Address"
                            value={email}
-                           onChange={(e) => setEmail(e.target.value)}>
+                           onChange={(e) => setEmail(e.target.value)}
+                           onKeyDown={handleEnterKeypress}>
                     </input>
                     <input className="create-user-field"
                            type="password"
                            name="password" 
                            placeholder=" Password"
                            value={password}
-                           onChange={(e) => setPassword(e.target.value)}>
+                           onChange={(e) => setPassword(e.target.value)}
+                           onKeyDown={handleEnterKeypress}>
                     </input>
                   </div>
 

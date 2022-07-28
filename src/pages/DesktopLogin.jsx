@@ -18,7 +18,7 @@ const DesktopLogin = () => {
   const dispatch = useDispatch();
 
 
-  const handleSignIn = async(e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
 
@@ -40,7 +40,7 @@ const DesktopLogin = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creds)
     };
-    
+
     let response = await fetch(url, requestOptions);
     if (response.ok) {
       const session = await response.json();
@@ -49,7 +49,7 @@ const DesktopLogin = () => {
       cookie.set('accessToken', session.accessToken);
       window.localStorage.setItem("nxs-id", session.id);
       // cookie.set('nxs_id', session.id);
-      
+
       // dispatch(setUserID(session.id));
       dispatch(setLoggedIn(true));
       console.log(cookie);
@@ -65,64 +65,66 @@ const DesktopLogin = () => {
   }
 
 
-    return (
-        <div className="desktop-container">
-          <div className="left-pane">
-            <div className="left-pane-text">
-              <p className="first-subtitle">Project Search Engine</p>
-              <p className="second-subtitle">Let your ideas shine.</p>
-              <p className="second-subtitle">Together we can go further.</p>
-            </div>
+  return (
+    <div className="desktop-container">
+      <div className="left-pane">
+        <div className="left-pane-text">
+          <p className="first-subtitle">Project Search Engine</p>
+          <p className="second-subtitle">Let your ideas shine.</p>
+          <p className="second-subtitle">Together we can go further.</p>
+        </div>
 
-            <img className="landing-image" src={landingImage} alt="landing"></img>
-          </div>
-          <div className="right-pane">
-            <div className="right-pane-header">
-              <p>Don't have an account? <a className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</a>
-              </p>
-            </div>
-
-            
-            <div className="right-pane-center">
-              <div className="right-pane-sign-in">
-                 <p className="sign-in">Sign in</p>
-                 <form className="desktop-form">
-                   <div className="form-field">
-                     <input className="email-textbox" 
-                           type="text"
-                           name="e-mail" 
-                           placeholder=" Email Address"
-                           onChange={(e) => setEmail(e.target.value)}>
-                    </input>
-                    <input className="password-textbox"
-                           type="password"
-                           name="password" 
-                           placeholder=" Password"
-                           onChange={(e) => setPassword(e.target.value)}></input>
-                  </div>
-
-                </form>
+        <img className="landing-image" src={landingImage} alt="landing"></img>
+      </div>
+      <div className="right-pane">
+        <div className="right-pane-center">
+          <div className="right-pane-sign-in">
+            <p className="sign-in">SIGN IN</p>
+            <form className="desktop-form">
+              <div className="form-field">
+                <input className="email-textbox"
+                  type="text"
+                  name="e-mail"
+                  placeholder=" Email Address"
+                  onChange={(e) => setEmail(e.target.value)}>
+                </input>
+                <input className="password-textbox"
+                  type="password"
+                  name="password"
+                  placeholder=" Password"
+                  onChange={(e) => setPassword(e.target.value)}></input>
                 <a className="forgot-pass" href="https://www.google.com">Forgot Password?</a>
-                <p className="error-msg">{errorMsg}</p>
-                
               </div>
-              <button className="login-button" type="submit" onClick={(e) => {handleSignIn(e)}}>Login</button>
-              
-            </div>
-
-            {/* <div className="copyright">
-              <p>Copyright &copy; NEXUS UW 2020.</p>
-            </div> */}
-            
-
-            
+            </form>
+            <p className="error-msg">{errorMsg}</p>
 
           </div>
-
-          
+          <button className="login-button" type="submit" onClick={(e) => { handleSignIn(e) }}>Login</button>
 
         </div>
-    );
+        <div className="or-separator">
+          <hr className="or-hr" />
+          <p className="or-text">OR</p>
+          <hr className="or-hr" />
+        </div>
+        <div className="right-pane-footer">
+          <p>Don't have an account? <a className="sign-up" onClick={() => navigate('/signUp')}>Sign Up</a>
+          </p>
+        </div>
+
+        {/* <div className="copyright">
+              <p>Copyright &copy; NEXUS UW 2020.</p>
+            </div> */}
+
+
+
+
+      </div>
+
+
+
+    </div>
+  );
 }
 
 export default DesktopLogin;
